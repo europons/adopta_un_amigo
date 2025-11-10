@@ -2,15 +2,29 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Nueva Mascota</title>
-    <link rel="stylesheet" th:href="@{estiloFormulario.css}">
+    <title th:text="${mascota.nombre}"></title>
+    <link rel="stylesheet" th:href="@{estiloDetalle.css}">
 </head>
 <body>
 <header>
-    <h1>Nueva mascota</h1>
+    <h1 th:text="${mascota.nombre}"></h1>
 </header>
 <main>
-
+    <section>
+        <h2>Detalles</h2>
+        <p>Edad: <span th:text="${mascota.edad}"></span></p>
+        <p>Especie: <span th:text="${mascota.especie}"></span></p>
+        <p>Raza: <span th:text="${mascota.raza}"></span></p>
+        <p>Sexo: <span th:text="${mascota.sexo}"></span></p>
+    </section>
+    <section>
+        <h2>Descripción</h2>
+        <p th:text="${mascota.descripcion}"></p>
+    </section>
+    <section>
+        <a th:href="@{/formulario}" class="volver">← Volver al formulario</a>
+        <a th:href="@{/lista}" class="volver">← Volver al listado</a>
+    </section>
 </main>
 <footer>
     <p>Actividad Spring Boot - Aplicación Adopta una Mascota</p>
