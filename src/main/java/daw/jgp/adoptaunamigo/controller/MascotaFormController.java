@@ -39,7 +39,7 @@ public class MascotaFormController {
         Long id = mascotaService.guardar(mascota);
 
         redirectAttributes.addAttribute("id", id);
-        return "redirect:/detalle/{id}";
+        return "redirect:/mascotas/{id}";
     }
 
 }
