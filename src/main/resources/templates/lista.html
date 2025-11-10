@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mascotas</title>
+</head>
+<body>
+<header>
+    <h1>Nuestras mascotas</h1>
+</header>
+<main>
+    <section>
+        <ul>
+            <li th:each="mascota : ${mascotas}">
+                <span th:text="${mascota.nombre}"></span> -
+                <span th:text="${mascota.especie}"></span>
+            </li>
+        </ul>
+    </section>
+    <section>
+        <a th:href="@{/mascotas/nueva}" class="volver">Añadir nueva mascota</a>
+    </section>
+</main>
+<footer>
+    <p>Actividad Spring Boot - Aplicación Adopta una Mascota</p>
+    <p>Desarrollado por Javier García Pons © 2025</p>
+</footer>
+</body>
+</html>
