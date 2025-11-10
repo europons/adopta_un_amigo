@@ -34,5 +34,10 @@ public class MascotaViewController {
         return "lista";
     }
 
+    @GetMapping("/")
+    public String mostrarLista (){
+        return "index";
+    }
+
 
 }
