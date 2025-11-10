@@ -20,9 +20,7 @@ public class MascotaService {
     public Long guardar(Mascota mascota){
         Long id = secuenciaID.getAndIncrement();
         mascota.setId(id);
-        if (mascota.getRaza() == null || mascota.getRaza().trim().isEmpty()){
-            mascota.setRaza("No especificada");
-        }
+        validarRaza(mascota);
         listaMascotas.add(mascota);
         return id;
     }
@@ -32,5 +30,11 @@ public class MascotaService {
                 .filter(mascota -> Objects.equals(mascota.getId(), id))
                 .findFirst()
                 .orElse(null);
+    }
+
+    private void validarRaza(Mascota mascota){
+        if (mascota.getRaza() == null || mascota.getRaza().trim().isEmpty()){
+            mascota.setRaza("No especificada");
+        }
     }
 }
