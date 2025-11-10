@@ -8,15 +8,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
-public class MascotaDetalleController {
+public class MascotaViewController {
 
     private final MascotaService mascotaService;
 
-    public MascotaDetalleController(MascotaService mascotaService){
+    public MascotaViewController(MascotaService mascotaService){
         this.mascotaService = mascotaService;
     }
 
-    @GetMapping("/detalle/{id}")
+    //No se que hago mal pero peta al intentar mostrar la vista detalle.html
+    @GetMapping("/mascotas/{id}")
     public String mostrarDetalles (@PathVariable Long id, Model model){
         Mascota mascota = mascotaService.buscarPorID(id);
 
@@ -24,5 +25,14 @@ public class MascotaDetalleController {
 
         return "detalle";
     }
+
+
+    @GetMapping("/mascotas")
+    public String mostrarLista (Model model){
+        model.addAttribute("mascotas", mascotaService.getListaMascotas());
+
+        return "lista";
+    }
+
 
 }
