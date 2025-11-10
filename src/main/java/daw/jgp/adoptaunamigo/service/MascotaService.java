@@ -20,6 +20,9 @@ public class MascotaService {
     public Long guardar(Mascota mascota){
         Long id = secuenciaID.getAndIncrement();
         mascota.setId(id);
+        if (mascota.getRaza() == null || mascota.getRaza().trim().isEmpty()){
+            mascota.setRaza("No especificada");
+        }
         listaMascotas.add(mascota);
         return id;
     }
