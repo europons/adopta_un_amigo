@@ -12,10 +12,10 @@
 </header>
     <main class="container my-5 pb-5">
         <section class="bg-white p-4 p-md-5 rounded shadow-sm mx-auto mb-4" style="max-width: 640px;">
-            <h2 class="h3 text-center text-secondary mb-4" style="font-family: 'Poppins', sans-serif;"
-                th:text="'Mascota ' + ${mascota.id} + ' - ' + ${mascota.nombre}"></h2>
+            <h2 class="text-center text-secondary mb-4" style="font-family: 'Poppins', sans-serif;"
+                th:text="${mascota.nombre}"></h2>
 
-            <div class="mb-3">
+            <div class="mb-3 fs-5">
                 <p class="mb-1"><strong>Edad:</strong> <span th:text="${mascota.edad}"></span></p>
                 <p class="mb-1"><strong>Especie:</strong> <span th:text="${mascota.especie}"></span></p>
                 <p class="mb-1"><strong>Raza:</strong> <span th:text="${mascota.raza}"></span></p>
@@ -23,8 +23,8 @@
             </div>
 
             <div class="mt-4">
-                <h3 class="h5 text-secondary mb-2">Descripción</h3>
-                <p class="border rounded p-3 bg-light-subtle" th:text="${mascota.descripcion}"></p>
+                <h4 class="text-secondary mb-2">Descripción</h4>
+                <p class="p-3 bg-light-subtle fs-5" th:text="${mascota.descripcion}"></p>
             </div>
         </section>
 
