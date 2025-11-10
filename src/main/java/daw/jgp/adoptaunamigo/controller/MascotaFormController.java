@@ -21,13 +21,13 @@ public class MascotaFormController {
         this.mascotaService = mascotaService;
     }
 
-    @GetMapping("/formulario")
+    @GetMapping("/mascotas/nueva")
     public String mostrarFormulario (Model model){
         model.addAttribute("mascota", new Mascota());
         return "formulario";
     }
 
-    @PostMapping("/formulario")
+    @PostMapping("/mascotas/nueva")
     public String procesarFormulario(@Valid @ModelAttribute("mascota") Mascota mascota,
                                      BindingResult bindingResult,
                                      RedirectAttributes redirectAttributes){
