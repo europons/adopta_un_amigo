@@ -10,7 +10,7 @@
         <h1>Nueva mascota</h1>
     </header>
     <main>
-        <form th:action="@{/formulario}" th:object="${mascota}" method="post">
+        <form th:action="@{/mascotas/nueva}" th:object="${mascota}" method="post">
 
             <label>Nombre</label>
             <input th:field="*{nombre}" placeholder="Nombre de la mascota">
