@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nueva Mascota</title>
+    <link rel="stylesheet" th:href="@{estiloFormulario.css}">
+</head>
+<body>
+    <header>
+        <h1>Nueva mascota</h1>
+    </header>
+    <main>
+        <form th:action="@{/formulario}" th:object="${mascota}" method="post">
+
+            <label>Nombre</label>
+            <input th:field="*{nombre}" placeholder="Nombre de la mascota">
+            <div class="err" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+
+            <label>Edad</label>
+            <input th:field="*{edad}" placeholder="Edad de la mascota">
+            <div class="err" th:if="${#fields.hasErrors('edad')}" th:errors="*{edad}"></div>
+
+            <label>Especie</label>
+            <select th:field="*{especie}">
+                <option value="">-- Selecciona una especie --</option>
+                <option value="perro">Perro</option>
+                <option value="gato">Gato</option>
+                <option value="ave">Ave</option>
+                <option value="roedor">Roedor</option>
+                <option value="conejo">Conejo</option>
+                <option value="otros">Otros</option>
+            </select>
+            <div class="err" th:if="${#fields.hasErrors('especie')}" th:errors="*{especie}"></div>
+
+            <label>Raza</label>
+            <input th:field="*{raza}" placeholder="Raza de la mascota">
+            <div class="err" th:if="${#fields.hasErrors('raza')}" th:errors="*{raza}"></div>
+
+            <label>Sexo</label>
+            <select th:field="*{sexo}">
+                <option value="">-- Selecciona un sexo --</option>
+                <option value="macho">Macho</option>
+                <option value="hembra">Hembra</option>
+                <option value="noespecifica">No especifica</option>
+            </select>
+            <div class="err" th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}"></div>
+
+            <label>Descripción</label>
+            <textarea th:field="*{descripcion}" placeholder="Describe brevemente a la mascota"></textarea>
+            <div class="err" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
+
+            <button type="submit">Guardar Mascota</button>
+        </form>
+    </main>
+    <footer>
+        <p>Actividad Spring Boot - Aplicación Adopta una Mascota</p>
+        <p>Desarrollado por Javier García Pons © 2025</p>
+    </footer>
+</body>
+</html>

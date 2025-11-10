@@ -1,0 +1,142 @@
+/* ======== Estilos generales ======== */
+:root {
+    --color-principal: #2b7de9;
+    --color-fondo: #f9fafc;
+    --color-texto: #333;
+    --color-borde: #ccc;
+    --color-error: #c62828;
+    --color-focus: #0059c1;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+}
+
+/* ======== Cabecera ======== */
+header {
+    background-color: var(--color-principal);
+    color: white;
+    text-align: center;
+    padding: 1.5rem 0;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+/* ======== Contenedor principal ======== */
+main {
+    max-width: 600px;
+    margin: 2rem auto;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ======== Formulario ======== */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+label {
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid var(--color-borde);
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--color-focus);
+    outline: none;
+    box-shadow: 0 0 3px var(--color-focus);
+}
+
+textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* ======== Botón ======== */
+button {
+    background-color: var(--color-principal);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.7rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+button:hover,
+button:focus {
+    background-color: var(--color-focus);
+}
+
+/* ======== Mensajes de error ======== */
+.err {
+    color: var(--color-error);
+    font-size: 0.9rem;
+    margin-top: -0.5rem;
+}
+
+/* ======== Footer ======== */
+footer {
+    color: #555;
+    border-top: 2px solid #ddd;
+    margin-top: 2rem;
+    background-color: #f0f3f7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+
+}
+
+/* ======== Accesibilidad ======== */
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 2px;
+}
+
+/* ======== Responsividad ======== */
+@media (max-width: 600px) {
+    main {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    button {
+        width: 100%;
+    }
+}
