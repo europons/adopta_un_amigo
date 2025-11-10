@@ -2,12 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${mascota.nombre}"></title>
-    <link rel="stylesheet" th:href="@{estiloDetalle.css}">
+    <title th:text="${mascota.id} + ' - ' + ${mascota.nombre}"></title>
+    <link rel="stylesheet" th:href="@{/estiloDetalle.css}">
 </head>
 <body>
 <header>
-    <h1 th:text="${mascota.nombre}"></h1>
+    <h1 th:text="'Mascota ' + ${mascota.id} + ' - ' + ${mascota.nombre}"></h1>
 </header>
 <main>
     <section>
