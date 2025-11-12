@@ -1,15 +1,11 @@
 package daw.jgp.adoptaunamigo.model;
 
 import jakarta.validation.constraints.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Setter
-@Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 
 public class Mascota {
     private Long id;
