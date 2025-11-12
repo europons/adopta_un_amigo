@@ -14,6 +14,13 @@
         <h1 class="text-white pt-4 pb-4 text-center display-1 fw-bold" style="font-family: 'Short Stack'">🐾 Adopta un Amigo 🐾</h1>
     </header>
 
+    <div th:if="${error}" class="alert alert-danger text-center mt-3">
+        <p th:text="${error}"></p>
+    </div>
+    <div th:if="${mensajeExito}" class="alert alert-success text-center mt-3">
+        <p th:text="${mensajeExito}"></p>
+    </div>
+
     <main class="container my-5 pb-5">
         <section class="bg-white p-4 p-md-5 rounded shadow-sm mx-auto" style="max-width: 640px;">
             <h2 class="h3 text-center text-secondary mb-4" style="font-family: 'Poppins', sans-serif;">Nuestras mascotas</h2>
