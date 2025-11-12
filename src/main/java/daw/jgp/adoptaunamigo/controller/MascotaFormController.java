@@ -1,6 +1,5 @@
 package daw.jgp.adoptaunamigo.controller;
 
-
 import daw.jgp.adoptaunamigo.model.Mascota;
 import daw.jgp.adoptaunamigo.service.MascotaService;
 import jakarta.validation.Valid;
