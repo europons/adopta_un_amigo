@@ -13,8 +13,8 @@ import java.util.concurrent.atomic.AtomicLong;
 @Setter
 @Service
 public class MascotaService {
-    private final AtomicLong secuenciaID = new AtomicLong(1);
-    private final List<Mascota> listaMascotas = new CopyOnWriteArrayList<>();
+    private final AtomicLong secuenciaID = new AtomicLong(1); //QUE ES AtomicLong
+    private final List<Mascota> listaMascotas = new CopyOnWriteArrayList<>();//QUE ES CopyOnWriteArrayList
 
 
     public Long guardar(Mascota mascota){
@@ -40,5 +40,18 @@ public class MascotaService {
 
     public void eliminar(Mascota mascota){
         listaMascotas.remove(mascota);
+    }
+
+    public List<Mascota> filtrarPorEspecie(String especie){
+        return listaMascotas.stream()
+                .filter(m -> m.getEspecie().equalsIgnoreCase(especie))
+                .toList();
+    }
+
+    public Mascota filtrarPorNombre(String nombre){
+        return listaMascotas.stream()
+                .filter(mascota -> mascota.getNombre().equalsIgnoreCase(nombre))
+                .findFirst()
+                .orElse(null);
     }
 }
