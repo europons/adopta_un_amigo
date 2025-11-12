@@ -66,4 +66,12 @@ public class MascotaViewController {
         model.addAttribute("mascotas", mascotas);
         return "lista";
     }
+
+    //Mostrar la vista de edición de una mascota
+    @GetMapping("/mascotas/editar/{id}")
+    public String mostrarFormularioEdicion (@PathVariable Long id, Model model){
+        model.addAttribute("mascota", mascotaService.buscarPorID(id));
+        return "editar";
+    }
+
 }
