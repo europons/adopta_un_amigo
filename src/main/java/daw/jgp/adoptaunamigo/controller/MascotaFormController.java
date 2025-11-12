@@ -35,6 +35,11 @@ public class MascotaFormController {
             return "formulario";
         }
 
+        if (!mascotaService.validarEspecieOtros(mascota)){
+            bindingResult.rejectValue("descripcion", "error especie otros", "Si la especie es 'Otros', debe escribirse una descripción.");
+            return "formulario";
+        }
+
         Long id = mascotaService.guardar(mascota);
 
         redirectAttributes.addAttribute("id", id);
