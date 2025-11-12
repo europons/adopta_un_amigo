@@ -17,10 +17,9 @@ public class MascotaViewController {
         this.mascotaService = mascotaService;
     }
 
-    //NO FUNCIONA
     //Mostrar página de los detalles de cada mascota
     @GetMapping("/mascotas/{id}")
-    public String mostrarDetalles (Long id, Model model){
+    public String mostrarDetalles (@PathVariable Long id, Model model){
         Mascota mascota = mascotaService.buscarPorID(id);
 
         if (mascota==null){ return "redirect:/mascotas";}
@@ -44,10 +43,9 @@ public class MascotaViewController {
         return "index";
     }
 
-    //ESTO TAMPOCO FUNCIONA
     //Eliminar la mascota y volver a mostrar la lista actualizada
     @PostMapping("/mascotas/eliminar/{id}")
-    public String eliminarMascota(Long id, Model model){
+    public String eliminarMascota(@PathVariable Long id, Model model){
         Mascota mascota = mascotaService.buscarPorID(id);
         mascotaService.eliminar(mascota);
 
