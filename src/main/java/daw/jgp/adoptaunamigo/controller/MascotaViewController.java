@@ -18,16 +18,19 @@ public class MascotaViewController {
     }
 
     //NO FUNCIONA
+    //Mostrar página de los detalles de cada mascota
     @GetMapping("/mascotas/{id}")
     public String mostrarDetalles (Long id, Model model){
         Mascota mascota = mascotaService.buscarPorID(id);
+
+        if (mascota==null){ return "redirect:/mascotas";}
 
         model.addAttribute("mascota", mascota);
 
         return "detalle";
     }
 
-
+    //Mostrar una lista con todas las mascotas
     @GetMapping("/mascotas")
     public String mostrarLista (Model model){
         model.addAttribute("mascotas", mascotaService.getListaMascotas());
@@ -35,13 +38,15 @@ public class MascotaViewController {
         return "lista";
     }
 
+    //Mostrar la página de inicio
     @GetMapping("/")
-    public String mostrarLista (){
+    public String mostrarInicio(){
         return "index";
     }
 
     //ESTO TAMPOCO FUNCIONA
-    @PostMapping("/mascotas")
+    //Eliminar la mascota y volver a mostrar la lista actualizada
+    @PostMapping("/mascotas/eliminar/{id}")
     public String eliminarMascota(Long id, Model model){
         Mascota mascota = mascotaService.buscarPorID(id);
         mascotaService.eliminar(mascota);
@@ -50,6 +55,4 @@ public class MascotaViewController {
 
         return "redirect:/mascotas";
     }
-
-
 }
