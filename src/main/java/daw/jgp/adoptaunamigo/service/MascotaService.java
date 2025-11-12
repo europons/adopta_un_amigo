@@ -61,4 +61,14 @@ public class MascotaService {
                     .toList();
         }
     }
+
+    public void editarMascota (Mascota mascotaEditada, Mascota mascotaAEditar){
+        mascotaAEditar.setNombre(mascotaEditada.getNombre());
+        mascotaAEditar.setEspecie(mascotaEditada.getEspecie());
+        mascotaAEditar.setRaza(mascotaEditada.getRaza());
+        mascotaAEditar.setEdad(mascotaEditada.getEdad());
+        mascotaAEditar.setDescripcion(mascotaEditada.getDescripcion());
+    }
+
+
 }
