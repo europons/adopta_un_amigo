@@ -11,6 +11,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
+/**
+ * Controlador encargado de gestionar las vistas relacionadas con las mascotas.
+ * Proporciona métodos para mostrar detalles, listas, formularios de edición y
+ * manejar acciones como eliminar y filtrar mascotas.
+ */
 @Controller
 public class MascotaViewController {
 
@@ -20,7 +25,13 @@ public class MascotaViewController {
         this.mascotaService = mascotaService;
     }
 
-    //Mostrar página de los detalles de cada mascota
+    /** Mostrar los detalles de una mascota específica
+     *
+     * @param id ID de la mascota a mostrar
+     * @param model Modelo para pasar datos a la vista
+     * @param redirectAttributes Atributos para redirección con mensajes
+     * @return Nombre de la vista a renderizar o redirección en caso de error
+     */
     @GetMapping("/mascotas/{id}")
     public String mostrarDetalles (@PathVariable Long id, Model model, RedirectAttributes redirectAttributes){
         Mascota mascota = mascotaService.buscarPorID(id);
@@ -35,7 +46,11 @@ public class MascotaViewController {
         return "detalle";
     }
 
-    //Mostrar una lista con todas las mascotas
+    /** Mostrar la lista completa de mascotas
+     *
+     * @param model Modelo para pasar datos a la vista
+     * @return Nombre de la vista a renderizar
+     */
     @GetMapping("/mascotas")
     public String mostrarLista(Model model){
         model.addAttribute("mascotas", mascotaService.getListaMascotas());
@@ -43,13 +58,21 @@ public class MascotaViewController {
         return "lista";
     }
 
-    //Mostrar la página de inicio
+    /** Mostrar la página de inicio
+     *
+     * @return Nombre de la vista de inicio
+     */
     @GetMapping("/")
     public String mostrarInicio(){
         return "index";
     }
 
-    //Eliminar la mascota y volver a mostrar la lista actualizada
+    /** Eliminar una mascota por su ID
+     *
+     * @param id ID de la mascota a eliminar
+     * @param redirectAttributes Atributos para redirección con mensajes
+     * @return Redirección a la lista de mascotas
+     */
     @GetMapping("/mascotas/eliminar/{id}")
     public String eliminarMascota(@PathVariable Long id, RedirectAttributes redirectAttributes){
         Mascota mascota = mascotaService.buscarPorID(id);
@@ -64,7 +87,13 @@ public class MascotaViewController {
         return "redirect:/mascotas";
     }
 
-    //Mostrar lista de mascotas filtrada por especie y nombre
+    /** Filtrar la lista de mascotas según criterios opcionales
+     *
+     * @param nombre Nombre para filtrar (opcional)
+     * @param especie Especie para filtrar (opcional)
+     * @param model Modelo para pasar datos a la vista
+     * @return Nombre de la vista con la lista filtrada
+     */
     @GetMapping("/mascotas/filtrar")
     public String filtrar(@RequestParam(required = false) String nombre,
                           @RequestParam(required = false) String especie,
@@ -75,14 +104,25 @@ public class MascotaViewController {
         return "lista";
     }
 
-    //Mostrar la vista de edición de una mascota
+    /** Mostrar el formulario de edición para una mascota específica
+     *
+     * @param id ID de la mascota a editar
+     * @param model Modelo para pasar datos a la vista
+     * @return Nombre de la vista del formulario de edición
+     */
     @GetMapping("/mascotas/editar/{id}")
     public String mostrarFormularioEdicionMascota (@PathVariable Long id, Model model){
         model.addAttribute("mascota", mascotaService.buscarPorID(id));
         return "editar";
     }
 
-    //Mostrar la vista de edición de una mascota
+    /** Guardar los cambios realizados en la edición de una mascota
+     *
+     * @param mascotaEditada Objeto Mascota con los datos editados
+     * @param bindingResult Resultado de la validación de los datos
+     * @param redirectAttributes Atributos para redirección con mensajes
+     * @return Redirección a los detalles de la mascota o vuelta al formulario en caso de error
+     */
     @PostMapping("/mascotas/editar")
     public String guadarCambiosEdicionMascota (@Valid @ModelAttribute("mascota") Mascota mascotaEditada,
                                                BindingResult bindingResult,
@@ -99,6 +139,7 @@ public class MascotaViewController {
         }
 
         Mascota mascotaAEditar = mascotaService.buscarPorID(mascotaEditada.getId());
+        // Validar que la mascota a editar exista
         if (mascotaAEditar == null) {
             redirectAttributes.addFlashAttribute("error", "No se encontró la mascota que intentas editar.");
             return "redirect:/mascotas";

@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+/**
+ * Controlador para manejar el formulario de creación de nuevas mascotas.
+ */
 @Controller
 public class MascotaFormController {
 
@@ -20,12 +23,26 @@ public class MascotaFormController {
         this.mascotaService = mascotaService;
     }
 
+    /**
+     * Muestra el formulario para crear una nueva mascota.
+     *
+     * @param model el modelo para pasar datos a la vista
+     * @return el nombre de la vista del formulario
+     */
     @GetMapping("/mascotas/nueva")
     public String mostrarFormulario (Model model){
         model.addAttribute("mascota", new Mascota());
         return "formulario";
     }
 
+    /**
+     * Procesa el formulario de creación de una nueva mascota.
+     *
+     * @param mascota el objeto Mascota vinculado al formulario
+     * @param bindingResult el resultado de la validación del formulario
+     * @param redirectAttributes atributos para redirección
+     * @return la vista a mostrar después de procesar el formulario
+     */
     @PostMapping("/mascotas/nueva")
     public String procesarFormulario(@Valid @ModelAttribute("mascota") Mascota mascota,
                                      BindingResult bindingResult,
@@ -35,6 +52,7 @@ public class MascotaFormController {
             return "formulario";
         }
 
+        // Validar que si la especie es "Otros", se pide descrpción obligatoriamente y se muestra un mensaje debajo del campo Descripción
         if (!mascotaService.validarEspecieOtros(mascota)){
             bindingResult.rejectValue("descripcion", "error especie otros", "Si la especie es 'Otros', debe escribirse una descripción.");
             return "formulario";

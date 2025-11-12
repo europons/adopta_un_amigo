@@ -3,6 +3,12 @@ package daw.jgp.adoptaunamigo.model;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
+/**
+ * Clase que representa una mascota en el sistema de adopción.
+ * Contiene atributos como nombre, edad, especie, raza, sexo y descripción.
+ * Incluye validaciones Jakarta para asegurar la integridad de los datos.
+ */
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

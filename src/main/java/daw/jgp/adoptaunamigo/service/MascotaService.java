@@ -9,6 +9,11 @@ import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 
+/**
+ * Servicio para gestionar las mascotas.
+ * Permite guardar, buscar, eliminar, filtrar y editar mascotas.
+ */
+
 @Getter
 @Setter
 @Service
@@ -16,7 +21,14 @@ public class MascotaService {
     private final AtomicLong secuenciaID = new AtomicLong(1);
     private final List<Mascota> listaMascotas = new CopyOnWriteArrayList<>();
 
-
+    /**
+     * Guarda una nueva mascota en la lista.
+     * Asigna un ID único a la mascota.
+     * Valida los campos raza y descripción.
+     *
+     * @param mascota La mascota a guardar.
+     * @return El ID asignado a la mascota.
+     */
     public Long guardar(Mascota mascota){
         Long id = secuenciaID.getAndIncrement();
         mascota.setId(id);
@@ -26,6 +38,12 @@ public class MascotaService {
         return id;
     }
 
+    /**
+     * Busca una mascota por su ID.
+     *
+     * @param id El ID de la mascota a buscar.
+     * @return La mascota encontrada o null si no existe.
+     */
     public Mascota buscarPorID(Long id){
         return listaMascotas.stream()
                 .filter(mascota -> Objects.equals(mascota.getId(), id))
@@ -33,10 +51,22 @@ public class MascotaService {
                 .orElse(null);
     }
 
+    /**
+     * Elimina una mascota de la lista.
+     *
+     * @param mascota La mascota a eliminar.
+     */
     public void eliminar(Mascota mascota){
         listaMascotas.remove(mascota);
     }
 
+    /**
+     * Filtra las mascotas por nombre y especie.
+     *
+     * @param nombre  El nombre de la mascota a filtrar (puede ser null o vacío).
+     * @param especie La especie de la mascota a filtrar (puede ser null o vacío).
+     * @return La lista de mascotas que coinciden con los criterios de filtrado.
+     */
     public List<Mascota> filtrar(String nombre, String especie){
         if ((nombre==null || nombre.isBlank()) && (especie==null || especie.isBlank())){
             return listaMascotas;
@@ -57,6 +87,13 @@ public class MascotaService {
         }
     }
 
+    /**
+     * Edita una mascota existente con los datos de otra mascota.
+     * Valida los campos raza y descripción.
+     *
+     * @param mascotaEditada La mascota con los nuevos datos.
+     * @param mascotaAEditar La mascota a editar.
+     */
     public void editarMascota (Mascota mascotaEditada, Mascota mascotaAEditar){
         validarRaza(mascotaEditada);
         validarDescripcion(mascotaEditada);
@@ -69,18 +106,36 @@ public class MascotaService {
     }
 
     /*VALIDACIONES*/
+    /**
+     * Valida el campo raza de la mascota.
+     * Si está vacío o es nulo, lo establece como "No especificada".
+     *
+     * @param mascota La mascota a validar.
+     */
     private void validarRaza(Mascota mascota){
         if (mascota.getRaza() == null || mascota.getRaza().trim().isEmpty()){
             mascota.setRaza("No especificada");
         }
     }
 
+    /**
+     * Valida el campo descripción de la mascota.
+     * Si está vacío o es nulo, lo establece como "Sin descripción".
+     *
+     * @param mascota La mascota a validar.
+     */
     private void validarDescripcion(Mascota mascota){
         if (mascota.getDescripcion() == null || mascota.getDescripcion().trim().isEmpty()){
             mascota.setDescripcion("Sin descripción");
         }
     }
 
+    /**
+     * Valida que si la especie es "Otros", la descripción no esté vacía ni sea "Sin descripción".
+     *
+     * @param mascota La mascota a validar.
+     * @return true si la validación es correcta, false en caso contrario.
+     */
     public boolean validarEspecieOtros(Mascota mascota){
         if (mascota.getEspecie().equalsIgnoreCase("Otros")){
             if (mascota.getDescripcion() == null || mascota.getDescripcion().trim().isEmpty() || mascota.getDescripcion().equals("Sin descripción")){
