@@ -87,7 +87,7 @@ public class MascotaViewController {
         return "redirect:/mascotas";
     }
 
-    /** Filtrar la lista de mascotas según criterios opcionales
+    /** Filtrar la lista de mascotas por nombre y especie
      *
      * @param nombre Nombre para filtrar (opcional)
      * @param especie Especie para filtrar (opcional)
@@ -118,13 +118,13 @@ public class MascotaViewController {
 
     /** Guardar los cambios realizados en la edición de una mascota
      *
-     * @param mascotaEditada Objeto Mascota con los datos editados
+     * @param mascotaActualizada Objeto Mascota con los datos editados
      * @param bindingResult Resultado de la validación de los datos
      * @param redirectAttributes Atributos para redirección con mensajes
      * @return Redirección a los detalles de la mascota o vuelta al formulario en caso de error
      */
     @PostMapping("/mascotas/editar")
-    public String guadarCambiosEdicionMascota (@Valid @ModelAttribute("mascota") Mascota mascotaEditada,
+    public String guadarCambiosEdicionMascota (@Valid @ModelAttribute("mascota") Mascota mascotaActualizada,
                                                BindingResult bindingResult,
                                                RedirectAttributes redirectAttributes){
 
@@ -133,21 +133,21 @@ public class MascotaViewController {
         }
 
         // Validar que el id no sea nulo
-        if (mascotaEditada.getId() == null) {
+        if (mascotaActualizada.getId() == null) {
             redirectAttributes.addFlashAttribute("error", "No se ha recibido un ID válido para editar la mascota.");
             return "redirect:/mascotas";
         }
 
-        Mascota mascotaAEditar = mascotaService.buscarPorID(mascotaEditada.getId());
+        Mascota mascotaAEditar = mascotaService.buscarPorID(mascotaActualizada.getId());
         // Validar que la mascota a editar exista
         if (mascotaAEditar == null) {
             redirectAttributes.addFlashAttribute("error", "No se encontró la mascota que intentas editar.");
             return "redirect:/mascotas";
         }
 
-        mascotaService.editarMascota(mascotaEditada, mascotaAEditar);
+        mascotaService.editarMascota(mascotaActualizada, mascotaAEditar);
 
-        redirectAttributes.addAttribute("id", mascotaEditada.getId());
+        redirectAttributes.addAttribute("id", mascotaActualizada.getId());
         return "redirect:/mascotas/{id}";
     }
 }
