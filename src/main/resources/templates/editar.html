@@ -59,6 +59,8 @@
             <textarea th:field="*{descripcion}" class="form-control" rows="3"></textarea>
             <div class="err text-danger small mt-1" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
 
+            <input type="hidden" th:field="*{id}"><!-- Campo oculto para tener la ID de la mascota -->
+
             <button type="submit" class="btn btn-success w-100 mt-4">Guardar Mascota</button>
         </form>
 
