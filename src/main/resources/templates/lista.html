@@ -37,7 +37,8 @@
                     <span class="fw-semibold text-dark p-2 flex-fill" th:text="${mascota.nombre}"></span>
                     <span class="text-secondary ms-5 p-2 flex-fill" th:text="${mascota.especie}"></span>
                     <a th:href="@{/mascotas/{id}(id=${mascota.id})}"  class="btn btn-outline-info p-2 me-2">Detalles</a>
-                    <!--<a th:href="@{/mascotas/eliminar/{id}(id=${mascota.id})}}" class="btn btn-outline-danger p-2">Borrar</a> Si añado el botón borrar peta al mostrar el listado -->
+                    <a th:href="" class="btn btn-outline-primary p-2 me-2">Editar</a>
+                    <a th:href="@{/mascotas/eliminar/{id}(id=${mascota.id})}}" class="btn btn-outline-danger p-2">Borrar</a>
                 </li>
             </ul>
 
