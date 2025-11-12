@@ -25,6 +25,12 @@ public class MascotaService {
         return id;
     }
 
+    private void validarRaza(Mascota mascota){
+        if (mascota.getRaza() == null || mascota.getRaza().trim().isEmpty()){
+            mascota.setRaza("No especificada");
+        }
+    }
+
     public Mascota buscarPorID(Long id){
         return listaMascotas.stream()
                 .filter(mascota -> Objects.equals(mascota.getId(), id))
@@ -32,9 +38,7 @@ public class MascotaService {
                 .orElse(null);
     }
 
-    private void validarRaza(Mascota mascota){
-        if (mascota.getRaza() == null || mascota.getRaza().trim().isEmpty()){
-            mascota.setRaza("No especificada");
-        }
+    public void eliminar(Mascota mascota){
+        listaMascotas.remove(mascota);
     }
 }
