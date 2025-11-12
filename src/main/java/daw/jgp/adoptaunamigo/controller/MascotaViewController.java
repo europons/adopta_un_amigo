@@ -25,7 +25,6 @@ public class MascotaViewController {
     public String mostrarDetalles (@PathVariable Long id, Model model, RedirectAttributes redirectAttributes){
         Mascota mascota = mascotaService.buscarPorID(id);
 
-
         if (mascota == null) {
             redirectAttributes.addFlashAttribute("error", "La mascota que intentas ver no existe o ha sido eliminada.");
             return "redirect:/mascotas";
