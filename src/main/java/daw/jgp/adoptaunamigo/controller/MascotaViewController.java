@@ -44,12 +44,12 @@ public class MascotaViewController {
     }
 
     //Eliminar la mascota y volver a mostrar la lista actualizada
-    @PostMapping("/mascotas/eliminar/{id}")
+    @GetMapping("/mascotas/eliminar/{id}")
     public String eliminarMascota(@PathVariable Long id, Model model){
         Mascota mascota = mascotaService.buscarPorID(id);
-        mascotaService.eliminar(mascota);
 
-        model.addAttribute("mascota", mascota);
+        if (mascota==null){ return "redirect:/mascotas";}
+        mascotaService.eliminar(mascota);
 
         return "redirect:/mascotas";
     }
