@@ -22,10 +22,14 @@ public class MascotaViewController {
 
     //Mostrar página de los detalles de cada mascota
     @GetMapping("/mascotas/{id}")
-    public String mostrarDetalles (@PathVariable Long id, Model model){
+    public String mostrarDetalles (@PathVariable Long id, Model model, RedirectAttributes redirectAttributes){
         Mascota mascota = mascotaService.buscarPorID(id);
 
-        if (mascota==null){ return "redirect:/mascotas";}
+
+        if (mascota == null) {
+            redirectAttributes.addFlashAttribute("error", "La mascota que intentas ver no existe o ha sido eliminada.");
+            return "redirect:/mascotas";
+        }
 
         model.addAttribute("mascota", mascota);
 
@@ -48,11 +52,15 @@ public class MascotaViewController {
 
     //Eliminar la mascota y volver a mostrar la lista actualizada
     @GetMapping("/mascotas/eliminar/{id}")
-    public String eliminarMascota(@PathVariable Long id, Model model){
+    public String eliminarMascota(@PathVariable Long id, RedirectAttributes redirectAttributes){
         Mascota mascota = mascotaService.buscarPorID(id);
 
-        if (mascota==null){ return "redirect:/mascotas";}
+        if (mascota == null) {
+            redirectAttributes.addFlashAttribute("error", "No se pudo eliminar: la mascota no existe o ya fue eliminada.");
+            return "redirect:/mascotas";
+        }
         mascotaService.eliminar(mascota);
+        redirectAttributes.addFlashAttribute("mensajeExito", "Mascota eliminada correctamente.");
 
         return "redirect:/mascotas";
     }
@@ -81,17 +89,25 @@ public class MascotaViewController {
                                                BindingResult bindingResult,
                                                RedirectAttributes redirectAttributes){
 
-        System.out.println("Guardando cambios de la mascota: " + mascotaEditada);
         if (bindingResult.hasErrors()){
             return "editar";
         }
 
+        // Validar que el id no sea nulo
+        if (mascotaEditada.getId() == null) {
+            redirectAttributes.addFlashAttribute("error", "No se ha recibido un ID válido para editar la mascota.");
+            return "redirect:/mascotas";
+        }
+
         Mascota mascotaAEditar = mascotaService.buscarPorID(mascotaEditada.getId());
+        if (mascotaAEditar == null) {
+            redirectAttributes.addFlashAttribute("error", "No se encontró la mascota que intentas editar.");
+            return "redirect:/mascotas";
+        }
+
         mascotaService.editarMascota(mascotaEditada, mascotaAEditar);
 
         redirectAttributes.addAttribute("id", mascotaEditada.getId());
         return "redirect:/mascotas/{id}";
-
     }
-
 }
