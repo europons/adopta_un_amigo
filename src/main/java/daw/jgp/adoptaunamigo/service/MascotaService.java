@@ -42,16 +42,23 @@ public class MascotaService {
         listaMascotas.remove(mascota);
     }
 
-    public List<Mascota> filtrarPorEspecie(String especie){
-        return listaMascotas.stream()
-                .filter(m -> m.getEspecie().equalsIgnoreCase(especie))
-                .toList();
-    }
-
-    public Mascota filtrarPorNombre(String nombre){
-        return listaMascotas.stream()
-                .filter(mascota -> mascota.getNombre().equalsIgnoreCase(nombre))
-                .findFirst()
-                .orElse(null);
+    public List<Mascota> filtrar(String nombre, String especie){
+        if ((nombre==null || nombre.isBlank()) && (especie==null || especie.isBlank())){
+            return listaMascotas;
+        }
+        if (nombre==null || nombre.isBlank()){
+            return listaMascotas.stream()
+                    .filter(mascota -> mascota.getEspecie().equalsIgnoreCase(especie))
+                    .toList();
+        }else if (especie==null || especie.isBlank()){
+            return listaMascotas.stream()
+                    .filter(mascota -> mascota.getNombre().equalsIgnoreCase(nombre))
+                    .toList();
+        }else{
+            return listaMascotas.stream()
+                    .filter(mascota -> mascota.getNombre().equalsIgnoreCase(nombre))
+                    .filter(mascota -> mascota.getEspecie().equalsIgnoreCase(especie))
+                    .toList();
+        }
     }
 }
