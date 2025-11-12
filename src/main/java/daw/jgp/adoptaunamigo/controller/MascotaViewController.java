@@ -6,7 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 public class MascotaViewController {
@@ -31,7 +33,7 @@ public class MascotaViewController {
 
     //Mostrar una lista con todas las mascotas
     @GetMapping("/mascotas")
-    public String mostrarLista (Model model){
+    public String mostrarLista(Model model){
         model.addAttribute("mascotas", mascotaService.getListaMascotas());
 
         return "lista";
@@ -52,5 +54,16 @@ public class MascotaViewController {
         mascotaService.eliminar(mascota);
 
         return "redirect:/mascotas";
+    }
+
+    //Mostrar lista de mascotas filtrada por especie y nombre
+    @GetMapping("/mascotas/filtrar")
+    public String filtrar(@RequestParam(required = false) String nombre,
+                          @RequestParam(required = false) String especie,
+                          Model model) {
+
+        List<Mascota> mascotas = mascotaService.filtrar(nombre, especie);
+        model.addAttribute("mascotas", mascotas);
+        return "lista";
     }
 }
