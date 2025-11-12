@@ -10,7 +10,7 @@
 </head>
 
 <body class="bg-light">
-    <header class="bg-dark bg-gradient">
+    <header class="bg-dark bg-gradient" style="box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);">
         <h1 class="text-white pt-4 pb-4 text-center display-1 fw-bold" style="font-family: 'Short Stack'">🐾 Adopta un Amigo 🐾</h1>
     </header>
 
@@ -41,7 +41,7 @@
                     <span class="fw-semibold text-dark p-2 flex-fill" th:text="${mascota.nombre}"></span>
                     <span class="text-secondary ms-5 p-2 flex-fill" th:text="${mascota.especie}"></span>
                     <a th:href="@{/mascotas/{id}(id=${mascota.id})}"  class="btn btn-outline-info p-2 me-2">Detalles</a>
-                    <a class="btn btn-outline-primary p-2 me-2">Editar</a>
+                    <a th:href="@{/mascotas/editar/{id}(id=${mascota.id})}" class="btn btn-outline-primary p-2 me-2">Editar</a>
                     <a th:href="@{/mascotas/eliminar/{id}(id=${mascota.id})}" class="btn btn-outline-danger p-2">Borrar</a>
                 </li>
             </ul>
@@ -53,7 +53,7 @@
         </section>
     </main>
 
-    <footer class="bg-dark text-white py-3 d-flex justify-content-between">
+    <footer class="bg-dark bg-gradient text-white py-3 d-flex justify-content-between" style="box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.5);">
         <p class="mb-0 ms-4">Actividad Spring Boot - Aplicación Adopta un Amigo</p>
         <p class="mb-0 me-4">Desarrollado por Javier García Pons © 2025</p>
     </footer>

@@ -9,28 +9,28 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 <body class="bg-light">
-<header class="bg-dark bg-gradient">
-    <h1 class="text-white pt-4 pb-4 text-center display-1 fw-bold" style="font-family: 'Short Stack'">🐾 Adopta un Amigo 🐾</h1>
-</header>
-<main>
-    <section>
-        <div class="list-group">
-            <a th:href="@{/mascotas/nueva}" class="list-group-item list-group-item-action text-center" style="cursor: pointer;">
-                <h5 class="mb-1 fs-3" style="font-family: 'Poppins', sans-serif;">Añadir nueva mascota</h5>
-                <small>Registra un nuevo amigo que busca hogar.</small>
-            </a>
+    <header class="bg-dark bg-gradient" style="box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);">
+        <h1 class="text-white pt-4 pb-4 text-center display-1 fw-bold" style="font-family: 'Short Stack'">🐾 Adopta un Amigo 🐾</h1>
+    </header>
+    <main>
+        <section>
+            <div class="list-group">
+                <a th:href="@{/mascotas/nueva}" class="list-group-item list-group-item-action text-center" style="cursor: pointer;">
+                    <h5 class="mb-1 fs-3" style="font-family: 'Poppins', sans-serif;">Añadir nueva mascota</h5>
+                    <small>Registra un nuevo amigo que busca hogar.</small>
+                </a>
 
-            <a th:href="@{/mascotas}" class="list-group-item list-group-item-action text-center" style="cursor: pointer;">
-                <h5 class="mb-1 fs-3" style="font-family: 'Poppins', sans-serif;">Ver todas las mascotas</h5>
-                <small class="text-body-secondary">Mira todos los amigos que esperan adopción.</small>
-            </a>
-        </div>
-    </section>
-</main>
-<footer class="bg-dark text-white py-3 fixed-bottom d-flex justify-content-between">
-    <p class="mb-0 ms-4">Actividad Spring Boot - Aplicación Adopta un Amigo</p>
-    <p class="mb-0 me-4">Desarrollado por Javier García Pons © 2025</p>
-</footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+                <a th:href="@{/mascotas}" class="list-group-item list-group-item-action text-center" style="cursor: pointer;">
+                    <h5 class="mb-1 fs-3" style="font-family: 'Poppins', sans-serif;">Ver todas las mascotas</h5>
+                    <small class="text-body-secondary">Mira todos los amigos que esperan adopción.</small>
+                </a>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-dark bg-gradient text-white py-3 d-flex justify-content-between" style="box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.5);">
+        <p class="mb-0 ms-4">Actividad Spring Boot - Aplicación Adopta un Amigo</p>
+        <p class="mb-0 me-4">Desarrollado por Javier García Pons © 2025</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
