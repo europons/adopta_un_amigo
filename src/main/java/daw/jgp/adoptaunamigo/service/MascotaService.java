@@ -13,8 +13,8 @@ import java.util.concurrent.atomic.AtomicLong;
 @Setter
 @Service
 public class MascotaService {
-    private final AtomicLong secuenciaID = new AtomicLong(1); //QUE ES AtomicLong
-    private final List<Mascota> listaMascotas = new CopyOnWriteArrayList<>();//QUE ES CopyOnWriteArrayList
+    private final AtomicLong secuenciaID = new AtomicLong(1);
+    private final List<Mascota> listaMascotas = new CopyOnWriteArrayList<>();
 
 
     public Long guardar(Mascota mascota){
