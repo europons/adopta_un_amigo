@@ -14,7 +14,7 @@ public class Mascota {
     private String nombre;
 
     @NotNull (message = "La edad es obligatoria")
-    @Min(value = 0, message = "No puede ser menor que 0")
+    @Min(value = 0, message = "La edad no puede ser menor que 0")
     private Integer edad;
 
     @NotBlank(message = "Debe seleccionar una especie")
