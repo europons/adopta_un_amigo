@@ -19,12 +19,11 @@
             <h2 class="h3 text-center text-secondary mb-4" style="font-family: 'Poppins', sans-serif;">Nuestras mascotas</h2>
 
             <ul class="list-group mb-4">
-                <li th:each="mascota : ${mascotas}" class="list-group-item p-0">
-                    <a th:href="@{/mascotas/{id}(id=${mascota.id})}"
-                       class="list-group-item list-group-item-action d-flex justify-content-between align-items-center border-0">
-                        <span class="fw-semibold text-dark text-decoration-none" th:text="${mascota.nombre}"></span>
-                        <span class="text-secondary" th:text="${mascota.especie}"></span>
-                    </a>
+                <li th:each="mascota : ${mascotas}" class="list-group-item list-group-item-action d-flex align-items-center border-0">
+                    <span class="fw-semibold text-dark p-2 flex-fill" th:text="${mascota.nombre}"></span>
+                    <span class="text-secondary ms-5 p-2 flex-fill" th:text="${mascota.especie}"></span>
+                    <a th:href="@{/mascotas/{id}(id=${mascota.id})}"  class="btn btn-outline-info p-2 me-2">Detalles</a>
+                    <a th:href="@{/mascotas}" class="btn btn-outline-danger p-2">Borrar</a><!-- Ni idea de como hacer POST al pulsar Borrar -->
                 </li>
             </ul>
 
