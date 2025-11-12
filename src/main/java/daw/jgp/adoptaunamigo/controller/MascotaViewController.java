@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class MascotaViewController {
@@ -16,9 +17,9 @@ public class MascotaViewController {
         this.mascotaService = mascotaService;
     }
 
-    //No se que hago mal pero peta al intentar mostrar la vista detalle.html
+    //NO FUNCIONA
     @GetMapping("/mascotas/{id}")
-    public String mostrarDetalles (@PathVariable Long id, Model model){
+    public String mostrarDetalles (Long id, Model model){
         Mascota mascota = mascotaService.buscarPorID(id);
 
         model.addAttribute("mascota", mascota);
@@ -37,6 +38,17 @@ public class MascotaViewController {
     @GetMapping("/")
     public String mostrarLista (){
         return "index";
+    }
+
+    //ESTO TAMPOCO FUNCIONA
+    @PostMapping("/mascotas")
+    public String eliminarMascota(Long id, Model model){
+        Mascota mascota = mascotaService.buscarPorID(id);
+        mascotaService.eliminar(mascota);
+
+        model.addAttribute("mascota", mascota);
+
+        return "redirect:/mascotas";
     }
 
 
