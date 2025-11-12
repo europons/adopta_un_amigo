@@ -2,11 +2,12 @@ package daw.jgp.adoptaunamigo.controller;
 
 import daw.jgp.adoptaunamigo.model.Mascota;
 import daw.jgp.adoptaunamigo.service.MascotaService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -69,9 +70,28 @@ public class MascotaViewController {
 
     //Mostrar la vista de edición de una mascota
     @GetMapping("/mascotas/editar/{id}")
-    public String mostrarFormularioEdicion (@PathVariable Long id, Model model){
+    public String mostrarFormularioEdicionMascota (@PathVariable Long id, Model model){
         model.addAttribute("mascota", mascotaService.buscarPorID(id));
         return "editar";
+    }
+
+    //Mostrar la vista de edición de una mascota
+    @PostMapping("/mascotas/editar")
+    public String guadarCambiosEdicionMascota (@Valid @ModelAttribute("mascota") Mascota mascotaEditada,
+                                               BindingResult bindingResult,
+                                               RedirectAttributes redirectAttributes){
+
+        System.out.println("Guardando cambios de la mascota: " + mascotaEditada);
+        if (bindingResult.hasErrors()){
+            return "editar";
+        }
+
+        Mascota mascotaAEditar = mascotaService.buscarPorID(mascotaEditada.getId());
+        mascotaService.editarMascota(mascotaEditada, mascotaAEditar);
+
+        redirectAttributes.addAttribute("id", mascotaEditada.getId());
+        return "redirect:/mascotas/{id}";
+
     }
 
 }
