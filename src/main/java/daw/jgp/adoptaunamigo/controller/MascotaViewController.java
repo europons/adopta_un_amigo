@@ -145,6 +145,12 @@ public class MascotaViewController {
             return "redirect:/mascotas";
         }
 
+        // Validar que si la especie es "Otros", se pide descripción obligatoriamente y se muestra un mensaje debajo del campo Descripción
+        if (!mascotaService.validarEspecieOtros(mascotaActualizada)){
+            bindingResult.rejectValue("descripcion", "error especie otros", "Si la especie es 'Otros', debe escribirse una descripción.");
+            return "formulario";
+        }
+
         mascotaService.editarMascota(mascotaActualizada, mascotaAEditar);
 
         redirectAttributes.addAttribute("id", mascotaActualizada.getId());
