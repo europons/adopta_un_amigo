@@ -33,7 +33,6 @@ public class MascotaService {
         Long id = secuenciaID.getAndIncrement();
         mascota.setId(id);
         validarRaza(mascota);
-        validarDescripcion(mascota);
         listaMascotas.add(mascota);
         return id;
     }
@@ -96,7 +95,6 @@ public class MascotaService {
      */
     public void editarMascota (Mascota mascotaEditada, Mascota mascotaAEditar){
         validarRaza(mascotaEditada);
-        validarDescripcion(mascotaEditada);
         mascotaAEditar.setNombre(mascotaEditada.getNombre());
         mascotaAEditar.setEspecie(mascotaEditada.getEspecie());
         mascotaAEditar.setRaza(mascotaEditada.getRaza());
@@ -115,18 +113,6 @@ public class MascotaService {
     private void validarRaza(Mascota mascota){
         if (mascota.getRaza() == null || mascota.getRaza().trim().isEmpty()){
             mascota.setRaza("No especificada");
-        }
-    }
-
-    /**
-     * Valida el campo descripción de la mascota.
-     * Si está vacío o es nulo, lo establece como "Sin descripción".
-     *
-     * @param mascota La mascota a validar.
-     */
-    private void validarDescripcion(Mascota mascota){
-        if (mascota.getDescripcion() == null || mascota.getDescripcion().trim().isEmpty()){
-            mascota.setDescripcion("Sin descripción");
         }
     }
 
