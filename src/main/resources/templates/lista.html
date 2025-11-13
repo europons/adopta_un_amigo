@@ -22,7 +22,7 @@
     </div>
 
     <main class="container my-5 pb-5">
-        <section class="bg-white p-4 p-md-5 rounded shadow-sm mx-auto" style="max-width: 640px;">
+        <section class="bg-white p-4 p-md-5 rounded shadow-sm mx-auto" style="max-width: 900px;">
             <h2 class="h3 text-center text-secondary mb-4" style="font-family: 'Poppins', sans-serif;">Nuestras mascotas</h2>
 
             <form th:action="@{/mascotas/filtrar}" method="get">
@@ -39,19 +39,31 @@
                     <option value="conejo">Conejo</option>
                     <option value="otros">Otros</option>
                 </select>
-                <button type="submit" class="btn btn-primary mb-5">Filtrar</button>
+                <button type="submit" class="btn btn-primary mb-5 fw-semibold">Filtrar</button>
             </form>
 
-
-            <ul class="list-group mb-4">
-                <li th:each="mascota : ${mascotas}" class="list-group-item list-group-item-action d-flex align-items-center border-0">
-                    <span class="fw-semibold text-dark p-2 flex-fill" th:text="${mascota.nombre}"></span>
-                    <span class="text-secondary ms-5 p-2 flex-fill" th:text="${mascota.especie}"></span>
-                    <a th:href="@{/mascotas/{id}(id=${mascota.id})}"  class="btn btn-outline-info p-2 me-2">Detalles</a>
-                    <a th:href="@{/mascotas/editar/{id}(id=${mascota.id})}" class="btn btn-outline-primary p-2 me-2">Editar</a>
-                    <a th:href="@{/mascotas/eliminar/{id}(id=${mascota.id})}" class="btn btn-outline-danger p-2">Borrar</a>
-                </li>
-            </ul>
+            <table class="table table-striped mb-5 fs-5 shadow-sm">
+                <thead class="table-dark">
+                <tr>
+                    <th scope="col" style="width: 25%">Nombre</th>
+                    <th scope="col" style="width: 25%">Especie</th>
+                    <th scope="col" style="width: 15%">Edad</th>
+                    <th scope="col" style="width: 35%"></th>
+                </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                <tr th:each="mascota : ${mascotas}" class="align-middle">
+                    <td th:text="${mascota.nombre}" class="text-primary fw-bold">Javi</td>
+                    <td th:text="${mascota.especie}">Javi</td>
+                    <td th:text="${mascota.edad}">5</td>
+                    <td class="text-end d-flex flex-wrap justify-content-end gap-2 ">
+                        <a th:href="@{/mascotas/{id}(id=${mascota.id})}"  class="btn btn-outline-info p-2 fw-semibold">Detalles</a>
+                        <a th:href="@{/mascotas/editar/{id}(id=${mascota.id})}" class="btn btn-outline-primary p-2 fw-semibold">Editar</a>
+                        <a th:href="@{/mascotas/eliminar/{id}(id=${mascota.id})}" class="btn btn-outline-danger p-2 fw-semibold">Borrar</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
 
             <div class="text-center">
                 <a th:href="@{/}" class="volver btn btn-outline-secondary">Volver al inicio</a>
